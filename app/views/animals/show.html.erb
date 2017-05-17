@@ -1,0 +1,6 @@
+<h1>Hi, I'm a <%= @animal.race %>.</h1>
+<p>My name is <%= @animal.name %></p>
+<%#= @race.talk %>
+<p><%= link_to "See all #{@animal.race.pluralize}", sti_animal_path(@animal.race) %></p>
+<p><%= link_to "See all Animals", sti_animal_path %></p>
+<p><%#= link_to "New #{@race}", sti_animal_path(@race, nil, :new) %></p>

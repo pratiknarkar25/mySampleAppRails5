@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<% present(@blog) do |blog| %>
+<p>
+  <strong>Title:</strong>
+  <%= blog.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= blog.text %>
+</p>
+
+<p>
+  <strong>Creation status:</strong>
+  <%= blog.creation_status %>
+</p>
+
+<% end %>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
