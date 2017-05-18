@@ -1,8 +1,25 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".age").blur(function(){
+        $(".birth_year").show("slow", function(){
+             var age = $(".age").val();
+             var year = new Date().getFullYear();
+             var dob = year - age
+            if(age){
+              $(".birth_year").text('Birth Year:' + dob );
+            } else { 
+              $(".birth_year").hide(); 
+            }
+        });
+    });
+});
+</script>
+
 <%= form_for(@animal) do |f| %>
   <% if @animal.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
-
       <ul>
       <% @animal.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -17,14 +34,16 @@
   </div>
 
   <div class="field">
-      <%= f.label :race %><br>
-      <%= f.select :race, Animal.races.map {|r| [r.humanize, r.camelcase]}, {}, disabled: @race != "Animal" %> 
+    <%= f.label :race %><br>
+    <%= f.select :race, Animal.races.map {|r| [r.humanize, r.camelcase]}, {}, disabled: @race != "Animal" %> 
   </div>
 
   <div class="field">
     <%= f.label :age %><br>
-    <%= f.text_field :age %>
+    <%= f.text_field :age, class: 'age' %>
   </div>
+
+  <p class='birth_year'></p>
 
   <div class="actions">
     <%= f.submit %>
